@@ -1,18 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* src/index.css */
+
+/* 上面這三行非常重要，絕對不能少！ */
+
 @layer base {
+  body {
+    /* 這裡設定文青風的米色背景 */
+    @apply bg-[#faf9f6] text-stone-800 antialiased;
+  }
+  
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif tracking-wide text-stone-900;
   }
-  
-  p {
-    @apply leading-relaxed text-stone-600;
-  }
-  
-  /* 讓按鈕變成圓角且顏色柔和 */
-  button {
-    @apply transition-all duration-300 ease-out;
+
+  /* 讓選取文字時顯示柔和的顏色 */
+  ::selection {
+    @apply bg-stone-200 text-stone-900;
   }
 }
