@@ -1,146 +1,171 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
-  Rocket, 
-  Shield, 
-  Zap, 
-  ChevronRight, 
+  BookOpen, 
+  Coffee, 
+  Feather, 
   Menu, 
   X, 
-  Github, 
-  Twitter 
+  ArrowRight, 
+  Instagram, 
+  Mail 
 } from 'lucide-react';
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white selection:bg-indigo-500 selection:text-white">
+    // 1. 全局背景設定：使用 Stone-50 (米白/紙質感) 替代純白或黑色
+    <div className="min-h-screen bg-[#faf9f6] text-stone-800 font-sans selection:bg-stone-200">
       
-      {/* NAVIGATION */}
-      <nav className="fixed w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-2">
-              <div className="bg-indigo-600 p-2 rounded-lg">
-                <Rocket className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold tracking-tight">Bolt<span className="text-indigo-500">Redesign</span></span>
+      {/* 導航欄：極簡、透明感 */}
+      <nav className="fixed w-full z-50 bg-[#faf9f6]/80 backdrop-blur-sm border-b border-stone-200/50">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="flex items-center justify-between h-20">
+            
+            {/* Logo: 使用襯線字體 (font-serif) */}
+            <div className="flex items-center gap-3">
+              <span className="text-2xl font-serif tracking-wider text-stone-900">Realll.</span>
             </div>
             
-            {/* Desktop Menu */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
-                <a href="#" className="hover:text-indigo-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Features</a>
-                <a href="#" className="hover:text-indigo-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Pricing</a>
-                <a href="#" className="hover:text-indigo-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
-                <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all">
-                  Get Started
-                </button>
-              </div>
+            {/* 桌面選單：文字顏色柔和，Hover 效果低調 */}
+            <div className="hidden md:flex items-center space-x-12">
+              <a href="#" className="text-stone-600 hover:text-stone-900 transition-colors text-sm tracking-widest uppercase">Journal</a>
+              <a href="#" className="text-stone-600 hover:text-stone-900 transition-colors text-sm tracking-widest uppercase">Gallery</a>
+              <a href="#" className="text-stone-600 hover:text-stone-900 transition-colors text-sm tracking-widest uppercase">About</a>
+              <button className="bg-stone-800 text-[#faf9f6] px-6 py-2 rounded-full text-sm hover:bg-stone-700 transition-all duration-500 ease-out">
+                Connect
+              </button>
             </div>
 
-            {/* Mobile menu button */}
+            {/* 手機選單按鈕 */}
             <div className="md:hidden">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-300 hover:text-white">
-                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-stone-600 hover:text-stone-900">
+                {isMenuOpen ? <X strokeWidth={1.5} /> : <Menu strokeWidth={1.5} />}
               </button>
             </div>
           </div>
         </div>
 
-        {/* Mobile Menu Dropdown */}
+        {/* 手機選單展開 */}
         {isMenuOpen && (
-          <div className="md:hidden bg-slate-900 border-b border-slate-800">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <a href="#" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800">Features</a>
-              <a href="#" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800">Pricing</a>
-              <button className="w-full mt-4 bg-indigo-600 text-white px-4 py-2 rounded-lg">Get Started</button>
+          <div className="md:hidden bg-[#faf9f6] border-b border-stone-200 absolute w-full">
+            <div className="px-6 py-8 space-y-4 flex flex-col items-center font-serif text-xl">
+              <a href="#" className="block py-2 text-stone-700">Journal</a>
+              <a href="#" className="block py-2 text-stone-700">Gallery</a>
+              <a href="#" className="block py-2 text-stone-700">About</a>
             </div>
           </div>
         )}
       </nav>
 
-      {/* HERO SECTION */}
-      <div className="relative pt-32 pb-20 sm:pt-40 sm:pb-24 overflow-hidden">
-        {/* Background Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-600/20 rounded-full blur-[100px] -z-10" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-slate-800 mb-8">
-            <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
-            <span className="text-sm text-slate-300">v2.0 is now live</span>
+      {/* HERO 區域：大留白、襯線字體、優雅的排版 */}
+      <header className="pt-40 pb-20 md:pt-52 md:pb-32 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-block mb-6">
+            <span className="border-b border-stone-300 pb-1 text-stone-500 text-sm tracking-[0.2em] uppercase">
+              Welcome to the space
+            </span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8">
-            Build websites that <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
-              look expensive.
-            </span>
+          <h1 className="text-5xl md:text-7xl font-serif text-stone-900 leading-tight mb-8 font-light">
+            Simplicity is the <br/>
+            <span className="italic font-normal text-stone-600">ultimate sophistication.</span>
           </h1>
           
-          <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10">
-            Stop settling for basic defaults. Use this code to instantly upgrade your Bolt application with a modern, dark-themed UI.
+          <p className="text-lg md:text-xl text-stone-500 max-w-xl mx-auto leading-relaxed mb-12 font-light">
+            在這裡保留您原本的功能，但換上一種更安靜、更舒適的視覺語言。
+            生活不需要太複雜，設計也是。
           </p>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all hover:scale-105 shadow-lg shadow-indigo-600/25">
-              Start Building <ChevronRight className="w-5 h-5" />
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <button className="group flex items-center justify-center gap-3 bg-stone-800 text-[#faf9f6] px-8 py-4 rounded-full hover:bg-stone-700 transition-all duration-500">
+              Start Exploring
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all">
-              View Documentation
+            <button className="flex items-center justify-center gap-3 px-8 py-4 rounded-full border border-stone-300 text-stone-600 hover:border-stone-800 hover:text-stone-900 transition-all duration-500">
+              Read More
             </button>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* FEATURES GRID */}
-      <div className="py-24 bg-slate-950 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div className="p-8 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-indigo-500/50 transition-all hover:shadow-2xl hover:shadow-indigo-500/10 group">
-              <div className="w-12 h-12 bg-indigo-900/50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-indigo-600 transition-colors">
-                <Zap className="w-6 h-6 text-indigo-400 group-hover:text-white" />
+      {/* 功能區塊 (Feature Section) - 模擬卡片式設計 */}
+      <section className="py-24 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-12">
+            
+            {/* 卡片 1 */}
+            <div className="group">
+              <div className="w-12 h-12 bg-stone-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-stone-100 transition-colors">
+                <Feather className="w-5 h-5 text-stone-600" strokeWidth={1.5} />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Lightning Fast</h3>
-              <p className="text-slate-400">Optimized for speed with Vite and React. Your users won't wait for content to load.</p>
+              <h3 className="text-2xl font-serif mb-4 text-stone-800">Lightweight</h3>
+              <p className="text-stone-500 leading-relaxed font-light">
+                輕盈的架構，如同羽毛般無負擔。保留核心功能，去除多餘裝飾。
+              </p>
             </div>
 
-            {/* Feature 2 */}
-            <div className="p-8 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-purple-500/50 transition-all hover:shadow-2xl hover:shadow-purple-500/10 group">
-              <div className="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-600 transition-colors">
-                <Shield className="w-6 h-6 text-purple-400 group-hover:text-white" />
+            {/* 卡片 2 */}
+            <div className="group">
+              <div className="w-12 h-12 bg-stone-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-stone-100 transition-colors">
+                <BookOpen className="w-5 h-5 text-stone-600" strokeWidth={1.5} />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Secure by Default</h3>
-              <p className="text-slate-400">Built-in best practices for security and data protection. Enterprise grade safety.</p>
+              <h3 className="text-2xl font-serif mb-4 text-stone-800">Storytelling</h3>
+              <p className="text-stone-500 leading-relaxed font-light">
+                每一個像素都在訴說故事。用最簡單的線條，勾勒出最深刻的印象。
+              </p>
             </div>
 
-            {/* Feature 3 */}
-            <div className="p-8 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-pink-500/50 transition-all hover:shadow-2xl hover:shadow-pink-500/10 group">
-              <div className="w-12 h-12 bg-pink-900/50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-pink-600 transition-colors">
-                <Rocket className="w-6 h-6 text-pink-400 group-hover:text-white" />
+            {/* 卡片 3 */}
+            <div className="group">
+              <div className="w-12 h-12 bg-stone-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-stone-100 transition-colors">
+                <Coffee className="w-5 h-5 text-stone-600" strokeWidth={1.5} />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Modern Stack</h3>
-              <p className="text-slate-400">Uses the latest Tailwind CSS utility classes for rapid and beautiful UI development.</p>
+              <h3 className="text-2xl font-serif mb-4 text-stone-800">Relaxed</h3>
+              <p className="text-stone-500 leading-relaxed font-light">
+                給用戶一杯咖啡的時間，享受慢節奏的交互體驗。溫暖而治癒。
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 圖片/展示區塊 */}
+      <section className="py-24 px-6 bg-[#faf9f6]">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="aspect-[4/5] bg-stone-200 rounded-sm overflow-hidden relative">
+               {/* 這裡可以用 img 標籤放入您的圖片 */}
+               <div className="absolute inset-0 flex items-center justify-center text-stone-400">
+                  [ 您的圖片區域 ]
+               </div>
+            </div>
+            <div className="md:pl-12">
+              <h2 className="text-4xl font-serif mb-6 text-stone-900">捕捉每一個<br/>真實的瞬間</h2>
+              <p className="text-stone-500 leading-relaxed mb-8 font-light">
+                這裡可以放置您的主要功能展示。我們使用了由淺入深的排版方式，
+                讓視覺焦點自然流動。
+              </p>
+              <a href="#" className="inline-flex items-center text-stone-800 border-b border-stone-800 pb-1 hover:text-stone-500 hover:border-stone-500 transition-colors">
+                查看更多作品 <ArrowRight className="ml-2 w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-slate-900 bg-slate-950 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2">
-            <div className="bg-slate-800 p-1.5 rounded-lg">
-              <Rocket className="w-5 h-5 text-indigo-400" />
-            </div>
-            <span className="font-semibold text-slate-300">BoltRedesign</span>
+      {/* 頁腳 */}
+      <footer className="bg-stone-900 text-[#faf9f6] py-16 px-6">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="text-2xl font-serif">Realll.</div>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-stone-400 transition-colors"><Instagram className="w-5 h-5" /></a>
+            <a href="#" className="hover:text-stone-400 transition-colors"><Mail className="w-5 h-5" /></a>
           </div>
-          <div className="flex gap-6 text-slate-400">
-            <a href="#" className="hover:text-white transition-colors"><Github className="w-5 h-5" /></a>
-            <a href="#" className="hover:text-white transition-colors"><Twitter className="w-5 h-5" /></a>
+          <div className="text-stone-500 text-sm font-light">
+            © 2024 Design by Bolt. All rights reserved.
           </div>
-          <p className="text-slate-500 text-sm">© 2024 All rights reserved.</p>
         </div>
       </footer>
 
